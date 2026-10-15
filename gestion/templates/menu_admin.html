@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+    {% load static %}
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Panel Administrador</title>
+
+    <link rel="icon" href="{% static 'imagenes/logoArte.png' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            background: #f4f6fb;
+        }
+
+        .navbar {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .15);
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #0d6efd, #003f88);
+            color: white;
+            padding: 50px;
+            border-radius: 0 0 25px 25px;
+            margin-bottom: 40px;
+        }
+
+        .card-opcion {
+            transition: .3s;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, .08);
+        }
+
+        .card-opcion:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, .2);
+        }
+
+        .icono {
+            font-size: 55px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+    </style>
+
+    <script>
+        const botonCerrarSesion = () => {
+
+            if (confirm("¿Desea cerrar la sesión?")) {
+                location.href = "/logout";
+            }
+
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+
+        <div class="container">
+
+            <a class="navbar-brand d-flex align-items-center" href="/menu_admin">
+                <a class="navbar-brand fw-bold" href="#">
+                    <i class="bi bi-house-door-fill"></i> Sistema de Arriendos
+                </a>
+
+            </a>
+
+            <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#menu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="menu">
+
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <span class="text-white me-4">
+                            <i class="bi bi-person-circle"></i>
+                            {{ nomUsuario }}
+                        </span>
+                    </li>
+
+                    <li class="nav-item">
+                        <button class="btn btn-danger" onclick="botonCerrarSesion()">
+                            <i class="bi bi-box-arrow-right"></i>Cerrar sesión
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="hero text-center">
+
+        <h1 class="display-5">
+            Panel de Administración
+        </h1>
+
+        <p class="lead">
+            Bienvenido {{ nomUsuario }}
+        </p>
+
+    </div>
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <!-- Autores -->
+            <div class="col-md-4">
+
+                <div class="card card-opcion">
+
+                    <div class="card-body text-center">
+
+                        <i class="bi bi-person-lines-fill text-primary icono"></i>
+
+                        <h4 class="mt-3">Autores</h4>
+
+                        <a href="/form_registrar_autor" class="btn btn-primary w-100 mt-2">
+                            Registrar
+                        </a>
+
+                        <a href="/listado_autor" class="btn btn-outline-primary w-100 mt-2">
+                            Ver listado
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Editoriales -->
+            <div class="col-md-4">
+
+                <div class="card card-opcion">
+
+                    <div class="card-body text-center">
+
+                        <i class="bi bi-building text-success icono"></i>
+
+                        <h4 class="mt-3">Editoriales</h4>
+
+                        <a href="/form_registrar_editorial" class="btn btn-success w-100 mt-2">
+                            Registrar
+                        </a>
+
+                        <a href="/listado_editorial" class="btn btn-outline-success w-100 mt-2">
+                            Ver listado
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Géneros -->
+            <div class="col-md-4">
+
+                <div class="card card-opcion">
+
+                    <div class="card-body text-center">
+
+                        <i class="bi bi-bookmarks-fill text-warning icono"></i>
+
+                        <h4 class="mt-3">Géneros</h4>
+
+                        <a href="/form_registrar_genero" class="btn btn-warning w-100 mt-2">
+                            Registrar
+                        </a>
+
+                        <a href="/listado_genero" class="btn btn-outline-warning w-100 mt-2">
+                            Ver listado
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Clientes -->
+            <div class="col-md-6">
+
+                <div class="card card-opcion">
+
+                    <div class="card-body text-center">
+
+                        <i class="bi bi-people-fill text-info icono"></i>
+
+                        <h4 class="mt-3">Clientes</h4>
+
+                        <a href="/form_registrar_cliente" class="btn btn-info w-100 mt-2">
+                            Registrar
+                        </a>
+
+                        <a href="/listado_cliente" class="btn btn-outline-info w-100 mt-2">
+                            Ver listado
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Libros -->
+            <div class="col-md-6">
+
+                <div class="card card-opcion">
+
+                    <div class="card-body text-center">
+
+                        <i class="bi bi-book-half text-danger icono"></i>
+
+                        <h4 class="mt-3">Libros</h4>
+
+                        <a href="/form_registrar_libro" class="btn btn-danger w-100 mt-2">
+                            Registrar
+                        </a>
+
+                        <a href="/listado_libro" class="btn btn-outline-danger w-100 mt-2">
+                            Ver listado
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="footer">
+
+            <img src="{% static 'imagenes/fondo_admin.jpeg' %}"
+                 class="img-fluid rounded shadow mt-5">
+
+        </div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
